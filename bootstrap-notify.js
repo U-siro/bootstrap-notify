@@ -33,6 +33,7 @@
 			from: "top",
 			align: "right"
 		},
+		restrict: 0,
 		offset: 20,
 		spacing: 10,
 		width: '200px',
@@ -122,6 +123,12 @@
 		//if duplicate messages are not allowed, then only continue if this new message is not a duplicate of one that it already showing
 		if (this.settings.allow_duplicates || (!this.settings.allow_duplicates && !isDuplicateNotification(this))) {
 			this.init();
+
+			// if restrict
+			var _length = $('[data-notify="container"]').length;
+			if (this.settings.restrict > 0 && _length >= this.settings.restrict) {
+				$('[data-notify="container"]').find('button[data-notify="dismiss"]').slice(0,_length-this.settings.restrict).trigger('click');
+			}
 		}
 	}
 
@@ -331,7 +338,7 @@
 						self.$ele.find('[data-notify="progressbar"] > div').attr('aria-valuenow', percent).css('width', percent + '%');
 					}
 					if (delay <= -(self.settings.timer)) {
-					
+
 						self.close();
 					}
 				}, self.settings.timer);
