@@ -58,7 +58,7 @@
 				  '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">&times;</button>',
 				  '<span data-notify="icon"></span>',
 				  '<h4 class="alert-heading" data-notify="title">{1}</h4>',
-				  '<p data-notify="message">{2}</p>',
+				  '<p class="mb-0" data-notify="message">{2}</p>',
 				  '<div class="progress" data-notify="progressbar">',
 				    '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>',
 				  '</div>',
