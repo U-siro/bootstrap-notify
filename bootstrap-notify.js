@@ -110,7 +110,8 @@
 				title: content.title ? content.title : '',
 				icon: content.icon ? content.icon : '',
 				url: content.url ? content.url : '#',
-				target: content.target ? content.target : '-'
+				target: content.target ? content.target : '-',
+				id: content.id ? content.id : ''
 			}
 		};
 
@@ -224,6 +225,9 @@
 			}
 			if ((this.settings.delay <= 0 && !this.settings.showProgressbar) || !this.settings.showProgressbar) {
 				this.$ele.find('[data-notify="progressbar"]').remove();
+			}
+			if (content.id.length !== 0) {
+				this.$ele.find('[data-notify="dismiss"]').attr("data-notify-id", content.id);
 			}
 		},
 		setIcon: function () {
