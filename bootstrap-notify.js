@@ -48,6 +48,8 @@
 		},
 		onShow: null,
 		onShown: null,
+    onDismiss: null,
+    onTimer: null,
 		onClose: null,
 		onClosed: null,
         onClick: null,
@@ -329,6 +331,10 @@
 			var self = this;
 
 			this.$ele.find('[data-notify="dismiss"]').on('click', function () {
+        if ($.isFunction(self.settings.onDismiss)) {
+          self.settings.onDismiss.call(this);
+        }
+
 				self.close();
 			});
 
@@ -357,7 +363,9 @@
 						self.$ele.find('[data-notify="progressbar"] > div').attr('aria-valuenow', percent).css('width', percent + '%');
 					}
 					if (delay <= -(self.settings.timer)) {
-
+            if ($.isFunction(self.settings.onTimer)) {
+              self.settings.onTimer.call(self.$ele);
+            }
 						self.close();
 					}
 				}, self.settings.timer);
